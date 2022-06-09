@@ -16,22 +16,12 @@
         </td>
         <td><%= link_to book.title,book, class: "book_#{book.id}" %></td>
         <td><%= book.body %></td>
-        <td><% if book.favorited_by?(current_user) %>
-          <p>
-            <%= link_to book_favorites_path(book), method: :delete do %>
-              ♥<%= book.favorites.count %>
-            <% end %>
-          </p>
-          <% else %>
-          <p>
-            <%= link_to book_favorites_path(book), method: :post do %>
-              ♡<%= book.favorites.count %>
-            <% end %>
-          </p>
-          <% end %>
+        <!--jQueryで使うためのセレクタ名の指定、.eachで繰り返し処理をしてるので、それぞれ別のidになるように<%#= book.id %>を入れている(#は抜く)-->
+        <td id="favorite_btn_<%= book.id %>">
+          <%= render "favorites/favorite_btn", book: book %>
         </td>
         <td>
-          <p>コメント数：<%= book.book_comments.count %></p>
+          コメント数：<%= book.book_comments.count %>
         </td>
 
       </tr>

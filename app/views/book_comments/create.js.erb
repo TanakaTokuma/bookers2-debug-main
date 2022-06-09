@@ -1,0 +1,6 @@
+<!--投稿フォームはjsに書かなくて良いので、投稿した後にcomments_indexを表示させたいのでそれを呼び出す-->
+$("#comments_index_<%= @book.id %>").html("<%= j(render 'book_comments/comments_index', book: @book) %>");
+<!--コメントカウントを更新するための呼び出し-->
+$("#comment_count").html("<%= j(render 'book_comments/comment_count', book: @book) %>");
+<!--フォームを送信したあと、フォームの値を空にする-->
+$("textarea").val('');
